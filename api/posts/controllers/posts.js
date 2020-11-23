@@ -7,8 +7,7 @@ const { sanitizeEntity } = require('strapi-utils');
  */
 
 module.exports = {
-  findOneBySlug: async ctx => {
-    // const id = ctx.params.id;
+  findOneBySlug: async (ctx) => {
     const { slug } = ctx.params;
     const entity = await strapi.services.posts.findOne({ slug });
     return sanitizeEntity(entity, { model: strapi.models.posts });

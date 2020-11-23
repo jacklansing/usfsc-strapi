@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/membership-applications",
+      "handler": "membership-applications.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/membership-applications/count",
+      "handler": "membership-applications.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/membership-applications/:id",
+      "handler": "membership-applications.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/membership-applications",
+      "handler": "membership-applications.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/membership-applications/:id",
+      "handler": "membership-applications.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/membership-applications/:id",
+      "handler": "membership-applications.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

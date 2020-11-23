@@ -1,0 +1,83 @@
+{
+  "kind": "collectionType",
+  "collectionName": "membership_applications",
+  "info": {
+    "name": "Membership Applications",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "membership_type": {
+      "type": "string",
+      "required": true
+    },
+    "address_line_one": {
+      "type": "string",
+      "required": true
+    },
+    "address_line_two": {
+      "type": "string"
+    },
+    "address_city": {
+      "type": "string",
+      "required": true
+    },
+    "address_state": {
+      "type": "string",
+      "required": true
+    },
+    "address_postal_code": {
+      "type": "string",
+      "required": true
+    },
+    "primary_applicant_first_name": {
+      "type": "string",
+      "required": true
+    },
+    "primary_applicant_last_name": {
+      "type": "string",
+      "required": true
+    },
+    "primary_applicant_dob": {
+      "type": "string",
+      "required": true
+    },
+    "secondary_applicant_first_name": {
+      "type": "string"
+    },
+    "secondary_applicant_last_name": {
+      "type": "string"
+    },
+    "secondary_applicant_dob": {
+      "type": "string"
+    },
+    "payment_received": {
+      "type": "boolean",
+      "private": true,
+      "default": false
+    },
+    "application_reviewed": {
+      "type": "boolean",
+      "default": false,
+      "private": true
+    },
+    "primary_applicant_age": {
+      "type": "integer"
+    },
+    "secondary_applicant_age": {
+      "type": "integer"
+    },
+    "phone": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
