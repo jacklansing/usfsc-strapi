@@ -17,9 +17,12 @@ module.exports = {
 
     let body = ctx.request.body;
 
-    if (!ctx.header['confirm-payment-secret']) {
+    if (
+      body.payment_received === true &&
+      !ctx.header['confirm-payment-secret']
+    ) {
       console.error(
-        'Update application was attempted without payment secret',
+        'Payment confirmation was attempted without payment secret',
         body,
       );
       return;

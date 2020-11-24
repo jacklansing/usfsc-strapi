@@ -57,13 +57,13 @@
     },
     "payment_received": {
       "type": "boolean",
-      "private": true,
+      "private": false,
       "default": false
     },
     "application_reviewed": {
       "type": "boolean",
       "default": false,
-      "private": true
+      "private": false
     },
     "primary_applicant_age": {
       "type": "integer"
