@@ -17,36 +17,6 @@ module.exports = {
   async update(ctx) {
     const { id } = ctx.params;
 
-    let body = ctx.request.body;
-    for (const key in body) {
-      // At this time, updates should only ever be made to these two fields.
-      if (key !== 'payment_received' && key !== 'application_reviewed') {
-        return {
-          message: 'unauthorized',
-        };
-      }
-    }
-
-    if (
-      body.payment_received === true &&
-      !ctx.header['confirm-payment-secret']
-    ) {
-      console.error(
-        'Payment confirmation was attempted without payment secret',
-        body,
-      );
-      return;
-    }
-
-    if (
-      ctx.header['confirm-payment-secret'] &&
-      ctx.header['confirm-payment-secret'] !==
-        process.env.CONFIRM_PAYMENT_SECRET
-    ) {
-      console.error('Payment confirmation was attempted with invalid secret');
-      return;
-    }
-
     let entity;
     if (ctx.is('multipart')) {
       const { data, files } = parseMultipartData(ctx);
@@ -69,7 +39,7 @@ module.exports = {
         await sendPaymentReceivedEmail(entity);
       }
 
-      if (body.application_reviewed === true) {
+      if (ctx.request.body.application_reviewed === true) {
         // If the application status changes to reviewed, send confirmation email
         await sendApplicationReviewedEmail(entity);
       }
@@ -86,28 +56,6 @@ module.exports = {
    */
   async create(ctx) {
     let entity;
-
-    let body = ctx.request.body;
-
-    if (
-      body.payment_received === true &&
-      !ctx.header['confirm-payment-secret']
-    ) {
-      console.error(
-        'Payment confirmation was attempted without payment secret',
-        body,
-      );
-      return;
-    }
-
-    if (
-      ctx.header['confirm-payment-secret'] &&
-      ctx.header['confirm-payment-secret'] !==
-        process.env.CONFIRM_PAYMENT_SECRET
-    ) {
-      console.error('Payment confirmation was attempted with invalid secret');
-      return;
-    }
 
     if (ctx.is('multipart')) {
       const { data, files } = parseMultipartData(ctx);
