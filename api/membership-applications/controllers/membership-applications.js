@@ -1,5 +1,7 @@
 'use strict';
 const { parseMultipartData, sanitizeEntity } = require('strapi-utils');
+const sendPaymentReceivedEmail = require('../../../utils/sendPaymentReceivedEmail');
+const sendApplicationReviewedEmail = require('../../../utils/sendApplicationReviewedEmail');
 /**
  * Read the documentation (https://strapi.io/documentation/v3.x/concepts/controllers.html#core-controllers)
  * to customize this controller
@@ -16,6 +18,14 @@ module.exports = {
     const { id } = ctx.params;
 
     let body = ctx.request.body;
+    for (const key in body) {
+      // At this time, updates should only ever be made to these two fields.
+      if (key !== 'payment_received' && key !== 'application_reviewed') {
+        return {
+          message: 'unauthorized',
+        };
+      }
+    }
 
     if (
       body.payment_received === true &&
@@ -52,6 +62,17 @@ module.exports = {
         { id },
         ctx.request.body,
       );
+
+      if (ctx.header['confirm-payment-secret']) {
+        // The header will let us know this update includes payment confirmation.
+        // If this is the case, we'll send an email confirming payment.
+        await sendPaymentReceivedEmail(entity);
+      }
+
+      if (body.application_reviewed === true) {
+        // If the application status changes to reviewed, send confirmation email
+        await sendApplicationReviewedEmail(entity);
+      }
     }
 
     return sanitizeEntity(entity, {
