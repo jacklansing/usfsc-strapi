@@ -29,7 +29,7 @@
       "path": "/membership-applications",
       "handler": "membership-applications.create",
       "config": {
-        "policies": ["hasPaymentSecret"]
+        "policies": ["rateLimit", "hasPaymentSecret"]
       }
     },
     {
@@ -37,7 +37,7 @@
       "path": "/membership-applications/:id",
       "handler": "membership-applications.update",
       "config": {
-        "policies": ["restrictUpdates", "hasPaymentSecret"]
+        "policies": ["rateLimit", "restrictUpdates", "hasPaymentSecret"]
       }
     },
     {

@@ -5,7 +5,7 @@
       "path": "/posts",
       "handler": "posts.find",
       "config": {
-        "policies": []
+        "policies": ["rateLimit"]
       }
     },
     {
@@ -13,7 +13,7 @@
       "path": "/posts/count",
       "handler": "posts.count",
       "config": {
-        "policies": []
+        "policies": ["rateLimit"]
       }
     },
     {
@@ -21,7 +21,7 @@
       "path": "/posts/:id",
       "handler": "posts.findOne",
       "config": {
-        "policies": []
+        "policies": ["rateLimit"]
       }
     },
     {
@@ -53,7 +53,7 @@
       "path": "/posts/slug/:slug",
       "handler": "posts.findOneBySlug",
       "config": {
-        "policies": []
+        "policies": ["rateLimit"]
       }
     }
   ]
