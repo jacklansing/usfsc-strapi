@@ -6,7 +6,7 @@ module.exports = async function (entity) {
   try {
     await strapi.plugins['email'].services.email.send({
       to: entity.email,
-      from: 'membership@unclesamfsc.com',
+      from: 'noreply@unclesamfsc.com',
       replyTo: 'unclesamtroy@gmail.com',
       subject: 'USFSC Membership Application Payment Confirmation',
       text: `Success! 
@@ -17,6 +17,9 @@ module.exports = async function (entity) {
     <p>You'll receive a follow-up email to notify you when the application has been processed.</p>`,
     });
   } catch (e) {
-    strapi.log.error(`Error sending email to ${entity.email}`, e);
+    strapi.log.error(
+      `Error sending payment received email to ${entity.email}`,
+      e,
+    );
   }
 };
