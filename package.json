@@ -2,9 +2,9 @@
   "name": "usfsc-strapi",
   "private": true,
   "version": "0.1.0",
-  "description": "A Strapi application",
+  "description": "USFSC Strapi application",
   "scripts": {
-    "develop": "strapi develop",
+    "dev": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi"
@@ -26,7 +26,7 @@
     "strapi-utils": "3.3.3"
   },
   "author": {
-    "name": "A Strapi developer"
+    "name": "@jacklansing"
   },
   "strapi": {
     "uuid": "3c5a6c08-3052-4e49-b004-fa634269aca4"
